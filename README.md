@@ -24,14 +24,19 @@ To export your resume as a PDF:
 
 ## 📝 Customizing Your Resume
 
-Edit the `documents/templates/Resume.tsx` file to update your information:
+Edit the `documents/Resume.tsx` file to update your information:
 
-1. **Personal Information**: Update the `Resume.PreviewProps` object at the bottom of the file
-2. **Contact Details**: Modify the `contact` object
-3. **Experience**: Edit the `experience` array with your work history
-4. **Projects**: Update the `projects` array with your notable projects
-5. **Education**: Modify the `education` object
-6. **Skills**: Update the `skills` object with your technical skills
+1. Open your PDF CV: `Bernardo Trindade de Abreu - CV (1).pdf`
+2. Open `documents/Resume.tsx` in your code editor
+3. Find the `Resume.PreviewProps` object at the bottom of the file
+4. Replace all "TODO:" sections with content from your PDF:
+   - **Personal Information**: Name and contact details
+   - **Summary**: Copy your professional summary
+   - **Experience**: Add all your work experience entries
+   - **Projects**: Add your projects (or remove this section if not applicable)
+   - **Education**: Add your education history
+   - **Skills**: List all your skills by category
+   - **Certifications**: Add certifications (or remove if not applicable)
 
 ## 🔄 Version Control
 
@@ -82,8 +87,7 @@ git checkout v1.0.0
 git checkout main
 ```
 
-## 📁 Project Structure
-
+## 📁 PrResume.tsx           # Your resume (EDIT THIS FILE)
 ```
 resume/
 ├── documents/
