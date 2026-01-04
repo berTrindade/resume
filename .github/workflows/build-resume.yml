@@ -67,11 +67,13 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: npx semantic-release
 
+      - name: Check if PDF exists
+        run: ls -lh Resume.pdf
+
       - name: Upload PDF to latest release
-        if: steps.semantic.outputs.new_release_published == 'true'
         run: |
-          TAG="v${{ steps.semantic.outputs.new_release_version }}"
-          echo "Uploading Resume.pdf to release $TAG"
-          gh release upload "$TAG" Resume.pdf --clobber
+          LATEST_TAG=$(gh release list --limit 1 --json tagName --jq '.[0].tagName')
+          echo "Uploading Resume.pdf to release $LATEST_TAG"
+          gh release upload "$LATEST_TAG" Resume.pdf --clobber
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
