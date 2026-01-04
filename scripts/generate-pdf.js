@@ -8,8 +8,8 @@ async function generatePDF() {
   const browser = await chromium.launch();
   const page = await browser.newPage();
   
-  // Navigate to the local dev server
-  await page.goto('http://localhost:3000/resume', {
+  // Navigate to the htmldocs dev server - it serves documents at root with documentId
+  await page.goto('http://localhost:3000', {
     waitUntil: 'networkidle'
   });
   
