@@ -56,8 +56,14 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build PDF
-        run: npm run build
+      - name: Generate PDF from htmldocs cloud
+        run: |
+          curl -X POST https://api.htmldocs.com/api/documents/resume \
+            -H "Content-Type: application/json" \
+            -d '{"format": "pdf"}' \
+            --output Resume.pdf
+        env:
+          HTMLDOCS_API_KEY: ${{ secrets.HTMLDOCS_API_KEY }}
 
       - name: Semantic Release
         id: semantic
@@ -72,6 +78,6 @@ jobs:
 
       - name: Upload PDF to Release
         if: steps.semantic.outputs.new_release_published == 'true'
-        run: gh release upload ${{ steps.latest_release.outputs.tag }} dist/Resume/Resume.pdf --clobber
+        run: gh release upload ${{ steps.latest_release.outputs.tag }} Resume.pdf --clobber
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
