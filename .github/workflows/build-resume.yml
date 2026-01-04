@@ -46,20 +46,10 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Install Playwright browsers
-        run: npx playwright install chromium --with-deps
-
-      - name: Start dev server in background
-        run: npm run dev &
-        
-      - name: Wait for dev server
-        run: npx wait-on http://localhost:3000 --timeout 30000
-
-      - name: Generate PDF
+      - name: Generate PDF from htmldocs API
+        env:
+          HTMLDOCS_API_KEY: ${{ secrets.HTMLDOCS_API_KEY }}
         run: npm run build:pdf
-
-      - name: Stop dev server
-        run: pkill -f "htmldocs"
 
       - name: Semantic Release
         id: semantic
