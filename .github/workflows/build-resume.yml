@@ -60,15 +60,18 @@ jobs:
         run: npm run build
 
       - name: Semantic Release
+        id: semantic
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: npx semantic-release
 
+      - name: Get latest release tag
+        if: steps.semantic.outputs.new_release_published == 'true'
+        id: latest_release
+        run: echo "tag=v${{ steps.semantic.outputs.new_release_version }}" >> $GITHUB_OUTPUT
+
       - name: Upload PDF to Release
         if: steps.semantic.outputs.new_release_published == 'true'
-        uses: softprops/action-gh-release@v1
-        with:
-          tag_name: v${{ steps.semantic.outputs.new_release_version }}
-          files: dist/Resume/Resume.pdf
+        run: gh release upload ${{ steps.latest_release.outputs.tag }} dist/Resume/Resume.pdf --clobber
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
