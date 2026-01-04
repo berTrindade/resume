@@ -29,10 +29,14 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Setup htmldocs authentication
+        if: github.ref == 'refs/heads/main'
+        run: |
+          mkdir -p ~/.htmldocs
+          echo '{"api_key":"${{ secrets.HTMLDOCS_API_KEY }}","team_id":"default"}' > ~/.htmldocs.json
+
       - name: Publish resume to htmldocs cloud
         if: github.ref == 'refs/heads/main'
-        env:
-          HTMLDOCS_API_KEY: ${{ secrets.HTMLDOCS_API_KEY }}
         run: npx htmldocs@latest publish documents/Resume.tsx
 
       - name: Generate PDF from htmldocs API
