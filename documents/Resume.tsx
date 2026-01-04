@@ -110,22 +110,16 @@ function Resume({
         <section>
           <SectionHeader>Key Skills</SectionHeader>
           <div className="grid grid-cols-2 gap-x-8">
-            <div>
+            <ul className="list-disc ml-5 space-y-1">
               {leftSkills.map((skill, index) => (
-                <div key={index} className="flex items-start mb-1">
-                  <span className="mr-2">•</span>
-                  <span className="text-[9.5pt]">{skill}</span>
-                </div>
+                <li key={index} className="text-[9.5pt]">{skill}</li>
               ))}
-            </div>
-            <div>
+            </ul>
+            <ul className="list-disc ml-5 space-y-1">
               {rightSkills.map((skill, index) => (
-                <div key={index} className="flex items-start mb-1">
-                  <span className="mr-2">•</span>
-                  <span className="text-[9.5pt]">{skill}</span>
-                </div>
+                <li key={index} className="text-[9.5pt]">{skill}</li>
               ))}
-            </div>
+            </ul>
           </div>
         </section>
 
