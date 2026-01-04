@@ -13,11 +13,10 @@ async function generatePDF() {
 
   const options = {
     hostname: 'api.htmldocs.com',
-    path: '/api/documents/resume',
-    method: 'POST',
+    path: '/api/documents/resume/render?format=pdf',
+    method: 'GET',
     headers: {
-      'Authorization': `Bearer ${apiKey}`,
-      'Content-Type': 'application/json'
+      'Authorization': `Bearer ${apiKey}`
     }
   };
 
@@ -26,6 +25,18 @@ async function generatePDF() {
 
   const req = https.request(options, (res) => {
     console.log(`Status: ${res.statusCode}`);
+    
+    if (res.statusCode !== 200) {
+      let errorData = '';
+      res.on('data', (chunk) => {
+        errorData += chunk;
+      });
+      res.on('end', () => {
+        console.error('API Error:', errorData);
+        process.exit(1);
+      });
+      return;
+    }
     
     res.pipe(file);
     
@@ -40,7 +51,6 @@ async function generatePDF() {
     process.exit(1);
   });
 
-  req.write(JSON.stringify({ format: 'pdf' }));
   req.end();
 }
 
