@@ -5,7 +5,8 @@
   "scripts": {
     "lint": "eslint . --max-warnings 0",
     "dev": "npx htmldocs@latest dev",
-    "build": "npx htmldocs@latest build documents/Resume.tsx"
+    "build": "npx htmldocs@latest build documents/Resume.tsx",
+    "build:pdf": "node scripts/generate-pdf.js"
   },
   "dependencies": {
     "@formatjs/intl": "^2.10.4",
@@ -27,6 +28,7 @@
     "@types/react": "^18.2.61",
     "@types/react-dom": "^18.2.19",
     "semantic-release": "^25.0.2",
-    "typescript": "^5.4.5"
+    "typescript": "^5.4.5",
+    "wait-on": "^9.0.3"
   }
 }
