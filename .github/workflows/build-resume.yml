@@ -22,16 +22,6 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build PDF
-        run: npm run build
-
-      - name: Upload PDF artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: resume-pdf
-          path: dist/Resume/Resume.pdf
-          retention-days: 30
-
   release:
     if: github.ref == 'refs/heads/main'
     needs: build
@@ -59,11 +49,10 @@ jobs:
       - name: Generate PDF from htmldocs cloud
         run: |
           curl -X POST https://api.htmldocs.com/api/documents/resume \
+            -H "Authorization: Bearer ${{ secrets.HTMLDOCS_API_KEY }}" \
             -H "Content-Type: application/json" \
             -d '{"format": "pdf"}' \
             --output Resume.pdf
-        env:
-          HTMLDOCS_API_KEY: ${{ secrets.HTMLDOCS_API_KEY }}
 
       - name: Semantic Release
         id: semantic
