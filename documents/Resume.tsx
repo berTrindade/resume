@@ -1,5 +1,4 @@
 import { Document, Head, Page, Spacer } from "@htmldocs/react";
-import { FaPhone, FaEnvelope, FaGithub, FaLinkedin, FaMapMarkerAlt, FaCheck } from "react-icons/fa";
 import "~/index.css";
 
 interface Education {
@@ -77,28 +76,24 @@ function Resume({
         <div className="text-center mb-4">
           <h1 className="text-2xl font-bold mb-2 uppercase tracking-wide">{name}</h1>
           <div className="flex justify-center items-center gap-3 text-[9pt]">
-            <a href={`mailto:${contact.email}`} className="flex items-center">
-              <FaEnvelope className="w-3 h-3 mr-1" />
+            <a href={`mailto:${contact.email}`}>
               {contact.email}
             </a>
             <span>|</span>
-            <div className="flex items-center">
-              <FaPhone className="w-3 h-3 mr-1" />
+            <span>
               {contact.phone}
-            </div>
+            </span>
             <span>|</span>
             {contact.linkedin && (
               <>
-                <a href={`https://linkedin.com/in/${contact.linkedin}`} className="flex items-center">
-                  <FaLinkedin className="w-3 h-3 mr-1" />
+                <a href={`https://linkedin.com/in/${contact.linkedin}`}>
                   in/{contact.linkedin}
                 </a>
                 <span>|</span>
               </>
             )}
             {contact.github && (
-              <a href={`https://github.com/${contact.github}`} className="flex items-center">
-                <FaGithub className="w-3 h-3 mr-1" />
+              <a href={`https://github.com/${contact.github}`}>
                 github.com/{contact.github}
               </a>
             )}
@@ -118,7 +113,7 @@ function Resume({
             <div>
               {leftSkills.map((skill, index) => (
                 <div key={index} className="flex items-start mb-1">
-                  <FaCheck className="w-3 h-3 mr-2 mt-0.5 flex-shrink-0" />
+                  <span className="mr-2">•</span>
                   <span className="text-[9.5pt]">{skill}</span>
                 </div>
               ))}
@@ -126,7 +121,7 @@ function Resume({
             <div>
               {rightSkills.map((skill, index) => (
                 <div key={index} className="flex items-start mb-1">
-                  <FaCheck className="w-3 h-3 mr-2 mt-0.5 flex-shrink-0" />
+                  <span className="mr-2">•</span>
                   <span className="text-[9.5pt]">{skill}</span>
                 </div>
               ))}
@@ -141,7 +136,7 @@ function Resume({
             <div key={index} className="mb-4">
               <div className="flex justify-between items-baseline mb-0.5">
                 <h3 className="font-bold text-[10.5pt] uppercase">{job.title}</h3>
-                <span className="text-[9.5pt]">{job.startDate} – {job.endDate}</span>
+                <span className="text-[9.5pt]">{job.startDate} - {job.endDate}</span>
               </div>
               <div className="italic text-[9.5pt] mb-1.5">
                 {job.company} ({job.location})
@@ -189,7 +184,7 @@ function Resume({
             <ul className="list-disc ml-5">
               {languages.map((lang, index) => (
                 <li key={index} className="text-[9.5pt]">
-                  <span className="font-bold">{lang.language}</span> – {lang.level}
+                  <span className="font-bold">{lang.language}</span> - {lang.level}
                 </li>
               ))}
             </ul>
