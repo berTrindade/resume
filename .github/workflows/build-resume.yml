@@ -33,7 +33,7 @@ jobs:
         if: github.ref == 'refs/heads/main'
         run: |
           mkdir -p ~/.htmldocs
-          echo '{"api_key":"${{ secrets.HTMLDOCS_API_KEY }}","team_id":"default"}' > ~/.htmldocs.json
+          echo '{"api_key":"${{ secrets.HTMLDOCS_API_KEY }}","team_id":"${{ secrets.HTMLDOCS_TEAM_ID }}"}' > ~/.htmldocs.json
 
       - name: Publish resume to htmldocs cloud
         if: github.ref == 'refs/heads/main'
