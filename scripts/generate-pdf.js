@@ -11,12 +11,19 @@ async function generatePDF() {
     process.exit(1);
   }
 
+  const postData = JSON.stringify({
+    props: {},
+    format: 'pdf'
+  });
+
   const options = {
-    hostname: 'api.htmldocs.com',
-    path: '/api/documents/resume/render?format=pdf',
-    method: 'GET',
+    hostname: 'htmldocs.com',
+    path: '/api/documents/resume',
+    method: 'POST',
     headers: {
-      'Authorization': `Bearer ${apiKey}`
+      'Authorization': `Bearer ${apiKey}`,
+      'Content-Type': 'application/json',
+      'Content-Length': Buffer.byteLength(postData)
     }
   };
 
@@ -51,6 +58,7 @@ async function generatePDF() {
     process.exit(1);
   });
 
+  req.write(postData);
   req.end();
 }
 
