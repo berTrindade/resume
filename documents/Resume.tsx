@@ -46,7 +46,7 @@ export interface ResumeProps {
 function SectionHeader({ children }: { children: React.ReactNode }) {
   return (
     <div className="border-b-2 border-black mb-3 mt-5">
-      <h2 className="text-base font-bold uppercase tracking-wider pb-1">{children}</h2>
+      <h2 className="text-[14pt] font-bold uppercase tracking-wider pb-1 text-center" style={{ fontFamily: "Arial Black, sans-serif" }}>{children}</h2>
     </div>
   );
 }
@@ -71,11 +71,11 @@ function Resume({
       <Head>
         <link href="https://fonts.googleapis.com/css2?family=Arial&display=swap" rel="stylesheet" />
       </Head>
-      <Page className="text-[10pt] leading-tight p-12" style={{ fontFamily: "Arial, sans-serif" }}>
+      <Page className="text-[11.5pt] leading-tight p-12" style={{ fontFamily: "Arial Narrow, sans-serif" }}>
         {/* Header */}
         <div className="text-center mb-4">
-          <h1 className="text-2xl font-bold mb-2 uppercase tracking-wide">{name}</h1>
-          <div className="flex justify-center items-center gap-3 text-[9pt]">
+          <h1 className="text-[20pt] font-bold mb-2 uppercase tracking-wide" style={{ fontFamily: "Arial Black, sans-serif" }}>{name}</h1>
+          <div className="flex justify-center items-center gap-3 text-[9.5pt]" style={{ fontFamily: "Arial, sans-serif" }}>
             <a href={`mailto:${contact.email}`}>
               {contact.email}
             </a>
@@ -112,12 +112,12 @@ function Resume({
           <div className="grid grid-cols-2 gap-x-8">
             <ul className="list-disc ml-5 space-y-1">
               {leftSkills.map((skill, index) => (
-                <li key={index} className="text-[9.5pt]">{skill}</li>
+                <li key={index} className="text-[11.5pt]">{skill}</li>
               ))}
             </ul>
             <ul className="list-disc ml-5 space-y-1">
               {rightSkills.map((skill, index) => (
-                <li key={index} className="text-[9.5pt]">{skill}</li>
+                <li key={index} className="text-[11.5pt]">{skill}</li>
               ))}
             </ul>
           </div>
@@ -129,15 +129,15 @@ function Resume({
           {experience.map((job, index) => (
             <div key={index} className="mb-4">
               <div className="flex justify-between items-baseline mb-0.5">
-                <h3 className="font-bold text-[10.5pt] uppercase">{job.title}</h3>
-                <span className="text-[9.5pt]">{job.startDate} - {job.endDate}</span>
+                <h3 className="font-bold text-[11.5pt] uppercase">{job.title}</h3>
+                <span className="text-[11.5pt]">{job.startDate} - {job.endDate}</span>
               </div>
-              <div className="italic text-[9.5pt] mb-1.5">
+              <div className="italic text-[11.5pt] mb-1.5">
                 {job.company} ({job.location})
               </div>
               <ul className="ml-5 space-y-1">
                 {job.achievements.map((achievement, i) => (
-                  <li key={i} className="leading-relaxed text-[9.5pt] list-disc">
+                  <li key={i} className="leading-relaxed text-[11.5pt] list-disc">
                     {achievement}
                   </li>
                 ))}
@@ -152,8 +152,8 @@ function Resume({
           
           {education.map((edu, index) => (
             <div key={index} className="mb-2">
-              <p className="font-bold text-[10pt]">{edu.degree}</p>
-              <p className="text-[9.5pt]">
+              <p className="font-bold text-[11.5pt]">{edu.degree}</p>
+              <p className="text-[11.5pt]">
                 {edu.school} | {edu.endDate}
               </p>
             </div>
@@ -163,8 +163,8 @@ function Resume({
             <div className="mt-3 space-y-2">
               {certifications.map((cert, index) => (
                 <div key={index}>
-                  <p className="font-bold text-[10pt]">{cert.name}</p>
-                  <p className="text-[9.5pt]">{cert.organization} | {cert.date}</p>
+                  <p className="font-bold text-[11.5pt]">{cert.name}</p>
+                  <p className="text-[11.5pt]">{cert.organization} | {cert.date}</p>
                 </div>
               ))}
             </div>
@@ -177,7 +177,7 @@ function Resume({
             <SectionHeader>Languages</SectionHeader>
             <ul className="list-disc ml-5">
               {languages.map((lang, index) => (
-                <li key={index} className="text-[9.5pt]">
+                <li key={index} className="text-[11.5pt]">
                   <span className="font-bold">{lang.language}</span> - {lang.level}
                 </li>
               ))}
@@ -196,7 +196,7 @@ Resume.PreviewProps = {
     phone: "+351 960 080 191",
     email: "btrindadedeabreu@gmail.com",
     linkedin: "bertrindade",
-    github: "BerTrindade",
+    github: "bertrindade",
   },
   experience: [
     {
